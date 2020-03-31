@@ -69,9 +69,17 @@ class CapsuleParameters(object):
 
         rot = PyKDL.Rotation().Rot(r, theta)
 
-        assert round(rot[0,2],9) == round(axis[0],9) and \
-               round(rot[1,2],9) == round(axis[1],9) and \
-               round(rot[2,2],9) == round(axis[2],9)
+	thr = 1e-6
+	if math.fabs(round(rot[0,2],9)-round(axis[0],9)) > thr:
+		print "[WARNING] math.fabs(round(rot[0,2],9)-round(axis[0],9)) > ",thr,":", math.fabs(round(rot[0,2],9)-round(axis[0],9)), ">", thr 
+	if math.fabs(round(rot[1,2],9)-round(axis[1],9)) > thr:
+		print "[WARNING] math.fabs(round(rot[1,2],9)-round(axis[1],9)) > ",thr,":", math.fabs(round(rot[1,2],9)-round(axis[1],9)), ">", thr
+	if math.fabs(round(rot[2,2],9)-round(axis[2],9)) > thr:
+		print "[WARNING] math.fabs(round(rot[2,2],9)-round(axis[2],9)) > ",thr,":", math.fabs(round(rot[2,2],9)-round(axis[2],9)), ">", thr
+
+        #assert round(rot[0,2],9) == round(axis[0],9) and \
+        #       round(rot[1,2],9) == round(axis[1],9) and \
+        #       round(rot[2,2],9) == round(axis[2],9)
 
         return CapsuleParameters(length, radius, p, rot)
 
