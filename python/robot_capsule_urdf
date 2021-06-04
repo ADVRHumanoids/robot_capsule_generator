@@ -223,7 +223,7 @@ class CapsuleWriter(object):
         link.collision = collision
         self._robot.add_link(link)
 
-        capsule_file = file(self.capsule_path, 'w')
+        capsule_file = open(self.capsule_path, 'w')
         capsule_file.write(self._robot.to_xml_string())
         capsule_file.close()
 
@@ -350,7 +350,7 @@ class CapsuleGenerator(CapsuleParameters):
         stdout, stderr = p.communicate()
         params = stdout.rstrip()
 
-        cylinder_para = params.split('\n')
+        cylinder_para = params.split(b'\n')
         cylinder_para = cylinder_para[1:]
         return cylinder_para
 
