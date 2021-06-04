@@ -69,16 +69,16 @@ class CapsuleParameters(object):
 
         rot = PyKDL.Rotation().Rot(r, theta)
 
-	if math.fabs(round(rot[0,2],9)-round(axis[0],9)) > thr:
-		print "[WARNING] math.fabs(round(rot[0,2],9)-round(axis[0],9)) > ",thr,":", math.fabs(round(rot[0,2],9)-round(axis[0],9)), ">", thr 
-	if math.fabs(round(rot[1,2],9)-round(axis[1],9)) > thr:
-		print "[WARNING] math.fabs(round(rot[1,2],9)-round(axis[1],9)) > ",thr,":", math.fabs(round(rot[1,2],9)-round(axis[1],9)), ">", thr
-	if math.fabs(round(rot[2,2],9)-round(axis[2],9)) > thr:
-		print "[WARNING] math.fabs(round(rot[2,2],9)-round(axis[2],9)) > ",thr,":", math.fabs(round(rot[2,2],9)-round(axis[2],9)), ">", thr
+        if math.fabs(round(rot[0,2],9)-round(axis[0],9)) > thr:
+            print("[WARNING] math.fabs(round(rot[0,2],9)-round(axis[0],9)) > ",thr,":", math.fabs(round(rot[0,2],9)-round(axis[0],9)), ">", thr)
+        if math.fabs(round(rot[1,2],9)-round(axis[1],9)) > thr:
+            print("[WARNING] math.fabs(round(rot[1,2],9)-round(axis[1],9)) > ",thr,":", math.fabs(round(rot[1,2],9)-round(axis[1],9)), ">", thr)
+        if math.fabs(round(rot[2,2],9)-round(axis[2],9)) > thr:
+            print("[WARNING] math.fabs(round(rot[2,2],9)-round(axis[2],9)) > ",thr,":", math.fabs(round(rot[2,2],9)-round(axis[2],9)), ">", thr)
 
-        #assert round(rot[0,2],9) == round(axis[0],9) and \
-        #       round(rot[1,2],9) == round(axis[1],9) and \
-        #       round(rot[2,2],9) == round(axis[2],9)
+            #assert round(rot[0,2],9) == round(axis[0],9) and \
+            #       round(rot[1,2],9) == round(axis[1],9) and \
+            #       round(rot[2,2],9) == round(axis[2],9)
 
         return CapsuleParameters(length, radius, p, rot)
 
@@ -140,9 +140,9 @@ class CapsuleWriter(object):
         :return: True on success
         """
         # making sure the robot name is set to be the mesh name
-        capsule_file = file(self.capsule_path, 'r')
+        capsule_file = open(self.capsule_path, 'r')
 
-        if type(capsule_file) is file and not capsule_file.closed:
+        if not capsule_file.closed:
             self._robot = URDF.from_xml_string(capsule_file.read())
         else:
             raise Exception('Error loading capsule file')
@@ -416,7 +416,7 @@ if __name__ == '__main__':
         exit()
     else:
         robot = URDF.from_xml_string(args.urdf_file.read())
-    print
+
     links = robot.links
 
     for link in links:
@@ -439,6 +439,6 @@ if __name__ == '__main__':
     urdf = robot.to_xml_string()
     if args.output:
         new_urdf_filename = os.path.splitext(args.urdf_file.name)[0] + '_capsules.urdf'
-        file(new_urdf_filename, 'w').write(urdf)
+        open(new_urdf_filename, 'w').write(urdf)
     else:
         print(urdf)

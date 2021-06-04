@@ -82,6 +82,6 @@ if __name__ == '__main__':
     pretty_print = lambda data: '\n'.join([line for line in minidom.parseString(urdf).toprettyxml(indent=' '*2).split('\n') if line.strip()])
     urdf = pretty_print(urdf)
     if args.output:
-        file(rviz_file, 'w').write(urdf)
+        open(rviz_file, 'w').write(urdf)
     else:
         print(urdf)
