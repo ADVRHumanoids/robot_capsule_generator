@@ -2,7 +2,7 @@
 # Authors: Alessio Rocchi
 # CopyPolicy: Released under the terms of the GNU GPL v2.0.
 
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.0)
 if(COMMAND cmake_policy)
     cmake_policy(SET CMP0003 OLD)
     cmake_policy(SET CMP0005 NEW)
@@ -19,7 +19,7 @@ endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
 
 FIND_PACKAGE(Eigen3 REQUIRED)
-FIND_PACKAGE(Boost COMPONENTS system filesystem program_options REQUIRED)
+FIND_PACKAGE(Boost COMPONENTS system filesystem program_options date_time REQUIRED)
 FIND_PACKAGE(urdf REQUIRED)
 FIND_PACKAGE(srdfdom REQUIRED)
 FIND_PACKAGE(moveit_core REQUIRED)
