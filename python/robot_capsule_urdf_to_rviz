@@ -32,7 +32,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(usage='robot_capsule_urdf_to_rviz <options> urdf_file\nLoad an URDF file using cylinders instead of capsules')
     parser.add_argument('urdf_file', type=argparse.FileType('r'), nargs='?',
                         default=None, help='URDF file. Use - for stdin')
-    parser.add_argument('-o', '--output', help='Dump file with cylinder+spheres at endpoints to URDF in .rviz extension', action='store_true')
+    parser.add_argument('-o', '--output', help='Dump file with cylinder+spheres at endpoints to URDF in .rviz extension')
     args = parser.parse_args()
     # Extract robot name and directory
 
@@ -82,6 +82,6 @@ if __name__ == '__main__':
     pretty_print = lambda data: '\n'.join([line for line in minidom.parseString(urdf).toprettyxml(indent=' '*2).split('\n') if line.strip()])
     urdf = pretty_print(urdf)
     if args.output:
-        file(rviz_file, 'w').write(urdf)
+        file(args.output, 'w').write(urdf)
     else:
         print(urdf)
