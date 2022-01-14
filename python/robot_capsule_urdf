@@ -69,12 +69,14 @@ class CapsuleParameters(object):
 
         rot = PyKDL.Rotation().Rot(r, theta)
 
-    if math.fabs(round(rot[0,2],9)-round(axis[0],9)) > thr:
-        print "[WARNING] math.fabs(round(rot[0,2],9)-round(axis[0],9)) > ",thr,":", math.fabs(round(rot[0,2],9)-round(axis[0],9)), ">", thr 
-    if math.fabs(round(rot[1,2],9)-round(axis[1],9)) > thr:
-        print "[WARNING] math.fabs(round(rot[1,2],9)-round(axis[1],9)) > ",thr,":", math.fabs(round(rot[1,2],9)-round(axis[1],9)), ">", thr
-    if math.fabs(round(rot[2,2],9)-round(axis[2],9)) > thr:
-        print "[WARNING] math.fabs(round(rot[2,2],9)-round(axis[2],9)) > ",thr,":", math.fabs(round(rot[2,2],9)-round(axis[2],9)), ">", thr
+        if math.fabs(round(rot[0,2],9)-round(axis[0],9)) > thr:
+            print('[warning] numerical inaccuracy detected')        
+        
+        if math.fabs(round(rot[1,2],9)-round(axis[1],9)) > thr:
+            print('[warning] numerical inaccuracy detected')      
+        
+        if math.fabs(round(rot[2,2],9)-round(axis[2],9)) > thr:
+            print('[warning] numerical inaccuracy detected')      
 
         #assert round(rot[0,2],9) == round(axis[0],9) and \
         #       round(rot[1,2],9) == round(axis[1],9) and \
