@@ -150,12 +150,10 @@ class CapsuleWriter(object):
         # making sure the robot name is set to be the mesh name
         capsule_file = open(self.capsule_path, 'r')
 
-        if type(capsule_file) is file and not capsule_file.closed:
-            self._robot = URDF.from_xml_string(capsule_file.read())
-        else:
-            raise Exception('Error loading capsule file')
+        self._robot = URDF.from_xml_string(capsule_file.read())
 
         self._robot.name = self.mesh_path
+        
         return True
 
     def exists(self, scaling_id):
