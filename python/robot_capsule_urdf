@@ -356,6 +356,13 @@ class CapsuleGenerator(CapsuleParameters):
             p = subprocess.Popen(["robot_capsule_generator", self.mesh_path], stdout=subprocess.PIPE)
 
         stdout, stderr = p.communicate()
+
+        # try decode if on python3
+        try:
+            stdout = stdout.decode()
+        except:
+            pass
+
         params = stdout.rstrip()
 
         cylinder_para = params.split('\n')
