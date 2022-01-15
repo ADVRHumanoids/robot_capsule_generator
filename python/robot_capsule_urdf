@@ -148,7 +148,7 @@ class CapsuleWriter(object):
         :return: True on success
         """
         # making sure the robot name is set to be the mesh name
-        capsule_file = file(self.capsule_path, 'r')
+        capsule_file = open(self.capsule_path, 'r')
 
         if type(capsule_file) is file and not capsule_file.closed:
             self._robot = URDF.from_xml_string(capsule_file.read())
@@ -231,7 +231,7 @@ class CapsuleWriter(object):
         link.collision = collision
         self._robot.add_link(link)
 
-        capsule_file = file(self.capsule_path, 'w')
+        capsule_file = open(self.capsule_path, 'w')
         capsule_file.write(self._robot.to_xml_string())
         capsule_file.close()
 
@@ -457,6 +457,6 @@ if __name__ == '__main__':
     robot.links = links
     urdf = robot.to_xml_string()
     if args.output:
-        file(args.output, 'w').write(urdf)
+        open(args.output, 'w').write(urdf)
     else:
         print(urdf)
